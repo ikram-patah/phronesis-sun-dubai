@@ -1,9 +1,12 @@
 <script setup>
+import LayoutDefault from '@/components/layout/Layout-default.vue'
 import Jumbotron from '@/components/Jumbotron.vue'
 import VillaList from '@/components/Villa-list.vue'
 </script>
 
 <template>
-  <Jumbotron />
-  <VillaList />
+  <LayoutDefault>
+    <Jumbotron />
+    <VillaList />
+  </LayoutDefault>
 </template>

@@ -1,6 +1,7 @@
 <script setup>
 import { computed } from 'vue'
 import { useRoute } from 'vue-router'
+import LayoutDefault from '@/components/layout/Layout-default.vue'
 import VillaDetails from '@/components/Villa-details.vue'
 import Breadcrumb from '@/components/Breadcrumb.vue'
 import VILLAS from '@/data/villas'
@@ -11,8 +12,14 @@ const breadcrumbPath = ['home', 'villas', villa.value.name]
 </script>
 
 <template>
-  <div class="container pb-5 pt-3">
-    <Breadcrumb :path="breadcrumbPath" />
-    <VillaDetails :villa="villa" />
-  </div>
+  <LayoutDefault>
+    <div class="py-4 bg-body-tertiary">
+      <div class="container pb-5 pt-3">
+        <Breadcrumb :path="breadcrumbPath" />
+        <div class="card shadow-lg">
+          <VillaDetails :villa="villa" />
+        </div>
+      </div>
+    </div>
+  </LayoutDefault>
 </template>

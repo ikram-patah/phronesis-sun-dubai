@@ -13,7 +13,7 @@ const props = defineProps({
 </script>
 
 <template>
-  <div id="apartment" class="album py-5 bg-body-tertiary">
+  <div id="apartment" class="py-5 bg-body-tertiary">
     <div class="container">
       <div v-if="props.showHeader" class="text-center mb-5">
         <h2>Our apartments</h2>
