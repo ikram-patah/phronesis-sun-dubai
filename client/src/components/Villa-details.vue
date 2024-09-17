@@ -150,6 +150,7 @@ const { showModal, closeModal } = useModal(['details', 'deposit'])
     <!-- ---------------------------------------- -->
     <Modal
       id="deposit"
+      size="lg"
       :title="`Deposit for ${props.villa.name}`"
       :closeFunc="
         () => {

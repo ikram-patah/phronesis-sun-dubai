@@ -15,13 +15,17 @@ const props = defineProps({
   closeFunc: {
     type: Function,
     required: true
+  },
+  size: {
+    type: String,
+    default: 'md'
   }
 })
 </script>
 
 <template>
   <div class="modal fade" :id="props.id" tabindex="-1">
-    <div class="modal-dialog">
+    <div :class="`modal-dialog modal-${props.size}`">
       <div class="modal-content">
         <div class="modal-header">
           <h1 class="modal-title fs-5">{{ props.title }}</h1>
