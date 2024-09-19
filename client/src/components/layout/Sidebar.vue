@@ -1,5 +1,14 @@
 <script setup>
-import { RouterLink } from 'vue-router'
+import { useUserStore } from '@/store'
+import { useRouter } from 'vue-router'
+
+const userStore = useUserStore()
+const router = useRouter()
+
+function logOut() {
+  userStore.logOut()
+  router.replace({ name: 'home' })
+}
 </script>
 
 <template>
@@ -8,16 +17,12 @@ import { RouterLink } from 'vue-router'
       href="/"
       class="d-flex align-items-center mb-3 mb-md-0 me-md-auto link-body-emphasis text-decoration-none"
     >
-      <svg class="bi pe-none me-2" width="40" height="32"><use xlink:href="#bootstrap"></use></svg>
       <span class="fs-4">Dashboard</span>
     </a>
     <hr />
     <ul class="nav nav-pills flex-column mb-auto">
       <li class="nav-item">
-        <a href="#" class="nav-link active" aria-current="page">
-          <svg class="bi pe-none me-2" width="16" height="16"><use xlink:href="#home"></use></svg>
-          Invoices
-        </a>
+        <a href="#" class="nav-link active" aria-current="page"> Invoices </a>
       </li>
     </ul>
     <hr />
@@ -35,14 +40,13 @@ import { RouterLink } from 'vue-router'
           height="32"
           class="rounded-circle me-2"
         />
-        <strong>mdo</strong>
+        <strong>Ikram Patah</strong>
       </a>
       <ul class="dropdown-menu text-small shadow">
-        <li><a class="dropdown-item" href="#">New project...</a></li>
-        <li><a class="dropdown-item" href="#">Settings</a></li>
+        <li><a class="dropdown-item" href="#">Invoices</a></li>
         <li><a class="dropdown-item" href="#">Profile</a></li>
         <li><hr class="dropdown-divider" /></li>
-        <li><a class="dropdown-item" href="#">Sign out</a></li>
+        <li><a class="dropdown-item" href="#" @click.prevent="logOut">Log out</a></li>
       </ul>
     </div>
   </div>

@@ -9,42 +9,54 @@ const userStore = useUserStore()
 const router = useRouter()
 
 const state = reactive({
-  email: '',
-  password: ''
+  isLoading: false
 })
 
 const onLogin = async () => {
-  const { token } = await api({
-    method: 'POST',
-    resource: 'login'
-  })
+  try {
+    state.isLoading = true
+    const { token } = await api({
+      method: 'POST',
+      resource: 'login'
+    })
 
-  userStore.setToken(token)
-  router.push({ name: 'dashboard' })
+    userStore.setToken(token)
+    router.push({ name: 'dashboard' })
+  } catch (error) {
+    console.error(error)
+    alert('Unable to log in!')
+  } finally {
+    state.isLoading = false
+  }
 }
 </script>
 
 <template>
   <LayoutDefault>
-    <div class="container py-5">
-      <div class="row justify-content-center">
-        <div class="col-6">
-          <div class="mb-3">
-            <label for="email" class="form-label">Email address</label>
-            <input
-              v-model="state.email"
-              type="email"
-              class="form-control"
-              id="email"
-              placeholder="name@example.com"
-            />
-          </div>
-          <div class="mb-3">
-            <label for="password" class="form-label">Password</label>
-            <input v-model="state.password" type="password" class="form-control" id="password" />
-          </div>
-          <div class="mb-6 text-center">
-            <button class="btn btn-primary" @click="onLogin">Login</button>
+    <div class="py-5 bg-body-tertiary">
+      <div class="container py-5">
+        <div class="row justify-content-center">
+          <div class="col-4">
+            <div class="card shadow-lg">
+              <div class="card-body">
+                <h5 class="card-title text-center mb-4">Login to your account</h5>
+                <div class="mb-3">
+                  <input type="email" class="form-control" placeholder="Email address" />
+                </div>
+                <div class="mb-3">
+                  <input type="password" class="form-control" placeholder="Password" />
+                </div>
+                <div class="d-grid">
+                  <button class="btn btn-primary" @click="onLogin" :disabled="state.isLoading">
+                    <template v-if="state.isLoading">
+                      <span class="spinner-border spinner-border-sm" aria-hidden="true"></span>
+                      <span role="status" class="ml-2"> &nbsp;Loging in... </span>
+                    </template>
+                    <template v-else> Log in </template>
+                  </button>
+                </div>
+              </div>
+            </div>
           </div>
         </div>
       </div>

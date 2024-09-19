@@ -5,6 +5,9 @@ import api from '@/helpers/api'
 import Modal from '@/components/Modal.vue'
 import { useModal } from '@/composables/use-modal'
 import { useUserStore } from '@/store'
+import { formatDateTime } from '@/helpers/dates'
+import { unKebabify } from '@/helpers/strings'
+import Breadcrumb from '@/components/Breadcrumb.vue'
 
 const userStore = useUserStore()
 
@@ -47,7 +50,6 @@ function initiateInstrument({ invoiceId }) {
 }
 
 RebillyInstruments.on('purchase-completed', () => {
-  console.log('sjgndjfsgndfjnj')
   state.invoicePaid = true
 })
 
@@ -63,6 +65,8 @@ const refreshInvoices = () => {
   }
 }
 
+const breadcrumbPath = ['home', 'Dashboard', 'Invoices']
+
 fetchInvoices()
 </script>
 
@@ -74,28 +78,29 @@ fetchInvoices()
           v-if="state.isLoading"
           style="height: 250px; display: flex; justify-content: center; align-items: center"
         >
-          <div class="spinner-grow" role="status">
+          <div class="spinner-border" style="width: 3rem; height: 3rem" role="status">
             <span class="visually-hidden">Loading...</span>
           </div>
         </div>
         <div v-else>
+          <Breadcrumb :path="breadcrumbPath" />
           <h2 class="mb-3">Invoices</h2>
           <table class="table table-striped">
             <thead>
               <tr>
-                <th scope="col">Invoice ID</th>
+                <th scope="col" class="text-center">Invoice #</th>
                 <th scope="col">Issue date</th>
-                <th scope="col">Status</th>
-                <th scope="col">Amount due</th>
+                <th scope="col" class="text-center">Status</th>
+                <th scope="col" class="text-center">Amount due</th>
                 <th scope="col"></th>
               </tr>
             </thead>
             <tbody>
               <tr v-for="invoice in state.invoices" :key="invoice.id">
-                <td>{{ invoice.id }}</td>
-                <td>{{ invoice.issuedTime }}</td>
-                <td>{{ invoice.status }}</td>
-                <td>{{ invoice.amountDue }}</td>
+                <td class="text-center">{{ invoice.invoiceNumber }}</td>
+                <td>{{ formatDateTime(invoice.issuedTime) }}</td>
+                <td class="text-center">{{ unKebabify(invoice.status) }}</td>
+                <td class="text-center">{{ invoice.amountDue ? invoice.amountDue : '-' }}</td>
                 <td>
                   <button
                     v-if="
@@ -117,7 +122,7 @@ fetchInvoices()
     <Modal
       id="invoice"
       size="lg"
-      :title="`Pay invoice ${state.selectedInvoice?.id}`"
+      :title="`Pay invoice #${state.selectedInvoice?.invoiceNumber}`"
       :closeFunc="
         () => {
           closeModal('invoice')
