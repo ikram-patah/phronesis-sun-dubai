@@ -4,7 +4,7 @@ import Footer from '@/components/layout/Footer.vue'
 </script>
 
 <template>
-  <div class="d-flex flex-nowrap" style="height: 100vh;">
+  <div class="d-flex flex-nowrap" style="height: 100vh">
     <Sidebar />
     <slot></slot>
   </div>
