@@ -24,6 +24,11 @@ import { RouterLink } from 'vue-router'
         <li class="nav-item">
           <a href="#" class="nav-link">About</a>
         </li>
+        <li class="nav-item">
+          <RouterLink :to="{ name: 'login' }" class="nav-link" activeClass="active">
+            Login
+          </RouterLink>
+        </li>
       </ul>
     </header>
   </div>

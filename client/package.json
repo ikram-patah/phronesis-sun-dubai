@@ -13,6 +13,8 @@
   "dependencies": {
     "@rebilly/instruments": "^9.81.0",
     "humanize-number": "^0.0.2",
+    "pinia": "^2.2.2",
+    "pinia-plugin-persist": "^1.0.0",
     "vue": "^3.4.29",
     "vue-router": "^4.3.3"
   },
