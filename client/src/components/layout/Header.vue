@@ -22,10 +22,14 @@ const userStore = useUserStore()
           <a href="#apartment" class="nav-link">Villas</a>
         </li>
         <li class="nav-item">
-          <a href="#" class="nav-link">FAQs</a>
+          <RouterLink :to="{ name: 'memberships' }" class="nav-link" activeClass="active">
+            Memberships
+          </RouterLink>
         </li>
         <li class="nav-item">
-          <a href="#" class="nav-link">About</a>
+          <RouterLink :to="{ name: 'debriefs' }" class="nav-link" activeClass="active">
+            Debriefs
+          </RouterLink>
         </li>
         <li class="nav-item">
           <RouterLink v-if="userStore.isLoggedIn" :to="{ name: 'dashboard' }" class="nav-link">

@@ -24,7 +24,7 @@ export function useModal(modals) {
 
   onMounted(() => {
     Object.keys(state.modal).forEach((modalId) => {
-      state.modal[modalId] = new bootstrap.Modal(document.getElementById(modalId), {
+      state.modal[modalId] = new window.bootstrap.Modal(document.getElementById(modalId), {
         keyboard: false,
         backdrop: 'static'
       })
