@@ -54,38 +54,40 @@ const { showModal, closeModal } = useModal(['details', 'deposit'])
 <template>
   <div>
     <div class="row align-items-center gx-5">
-      <div class="col-md-6">
+      <div class="col-lg-6">
         <img :src="props.villa.imgPath" />
       </div>
-      <div class="col-md-6">
-        <h2 class="mb-3">
-          {{ props.villa.name }}
-        </h2>
-        <div class="text-muted d-flex mb-3">
-          <span>
-            <i class="bi bi-pin-map"></i>
-            {{ props.villa.location }}
-          </span>
-          <span style="margin-left: 2rem">
-            <i class="bi bi-house"></i>
-            {{ props.villa.beds }}
-          </span>
-          <span style="margin-left: 2rem">
-            <i class="bi bi-textarea-resize"></i>
-            {{ humanizeNumber(props.villa.sqft) }} sqft
-          </span>
-        </div>
-        <p class="mb-4">
-          {{ props.villa.descriptionShort }}
-        </p>
-        <div class="text-muted">
-          <span>${{ humanizeNumber(props.villa.yearlyPrice) }} monthly</span>
-          <span class="px-2">or</span>
-          <span>${{ humanizeNumber(props.villa.monthlyPrice) }} yearly</span>
-        </div>
+      <div class="col-lg-6">
+        <div class="py-3">
+          <h2 class="mb-3">
+            {{ props.villa.name }}
+          </h2>
+          <div class="text-muted d-flex mb-3">
+            <span>
+              <i class="bi bi-pin-map"></i>
+              {{ props.villa.location }}
+            </span>
+            <span style="margin-left: 2rem">
+              <i class="bi bi-house"></i>
+              {{ props.villa.beds }}
+            </span>
+            <span style="margin-left: 2rem">
+              <i class="bi bi-textarea-resize"></i>
+              {{ humanizeNumber(props.villa.sqft) }} sqft
+            </span>
+          </div>
+          <p class="mb-4">
+            {{ props.villa.descriptionShort }}
+          </p>
+          <div class="text-muted">
+            <span>${{ humanizeNumber(props.villa.yearlyPrice) }} monthly</span>
+            <span class="px-2">or</span>
+            <span>${{ humanizeNumber(props.villa.monthlyPrice) }} yearly</span>
+          </div>
 
-        <div class="pt-4">
-          <button class="btn btn-primary" @click="() => showModal('details')">Book now</button>
+          <div class="pt-4">
+            <button class="btn btn-primary" @click="() => showModal('details')">Book now</button>
+          </div>
         </div>
       </div>
     </div>

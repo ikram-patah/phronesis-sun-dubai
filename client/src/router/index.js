@@ -1,10 +1,5 @@
 import { createRouter, createWebHistory } from 'vue-router'
 import { useUserStore } from '@/store'
-import HomeView from '../views/HomeView.vue'
-import LoginView from '../views/LoginView.vue'
-import DashboardView from '../views/DashboardView.vue'
-import DebriefView from '../views/DebriefView.vue'
-import MembershipsView from '../views/MembershipsView.vue'
 
 const router = createRouter({
   history: createWebHistory(import.meta.env.BASE_URL),
@@ -15,7 +10,12 @@ const router = createRouter({
     {
       path: '/',
       name: 'home',
-      component: HomeView
+      component: () => import('../views/HomeView.vue')
+    },
+    {
+      path: '/villas',
+      name: 'villas',
+      component: () => import('../views/VillasView.vue')
     },
     {
       path: '/villas/:id',
@@ -23,9 +23,14 @@ const router = createRouter({
       component: () => import('../views/VillaView.vue')
     },
     {
+      path: '/memberships',
+      name: 'memberships',
+      component: () => import('../views/MembershipsView.vue')
+    },
+    {
       path: '/login',
       name: 'login',
-      component: LoginView,
+      component: () => import('../views/LoginView.vue'),
       beforeEnter: (to, from) => {
         if (useUserStore().isLoggedIn) {
           return { name: 'dashboard' }
@@ -35,18 +40,13 @@ const router = createRouter({
     {
       path: '/dashboard',
       name: 'dashboard',
-      component: DashboardView
-    },
-    {
-      path: '/memberships',
-      name: 'memberships',
-      component: MembershipsView,
+      component: () => import('../views/DashboardView.vue')
     },
     {
       path: '/debriefs',
       name: 'debriefs',
-      component: DebriefView,
-    },
+      component: () => import('../views/DebriefView.vue')
+    }
   ]
 })
 

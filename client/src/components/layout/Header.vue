@@ -19,7 +19,9 @@ const userStore = useUserStore()
           </RouterLink>
         </li>
         <li class="nav-item">
-          <a href="#apartment" class="nav-link">Villas</a>
+          <RouterLink :to="{ name: 'villas' }" class="nav-link" activeClass="active">
+            Villas
+          </RouterLink>
         </li>
         <li class="nav-item">
           <RouterLink :to="{ name: 'memberships' }" class="nav-link" activeClass="active">

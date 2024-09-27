@@ -13,11 +13,13 @@ const breadcrumbPath = ['home', 'villas', villa.value.name]
 
 <template>
   <LayoutDefault>
-    <div class="py-4 bg-body-tertiary">
+    <div class="py-5 bg-body-tertiary">
       <div class="container pb-5 pt-3">
         <Breadcrumb :path="breadcrumbPath" />
         <div class="card shadow-lg">
-          <VillaDetails :villa="villa" />
+          <div class="card-body">
+            <VillaDetails :villa="villa" />
+          </div>
         </div>
       </div>
     </div>
