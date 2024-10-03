@@ -3,7 +3,6 @@ import { defineStore } from 'pinia'
 export const useCartStore = defineStore('cart', {
   state: () => ({
     items: []
-    // {id: 'planId', quantity: 1}
   }),
   getters: {
     hasItems: (state) => Boolean(state.items.length)
@@ -19,6 +18,9 @@ export const useCartStore = defineStore('cart', {
     },
     removeItem(id) {
       this.items = this.items.filter((item) => item.id !== id)
+    },
+    removeAllItems() {
+      this.items = []
     }
   },
   persist: {

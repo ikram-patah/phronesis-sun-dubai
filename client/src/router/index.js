@@ -1,5 +1,7 @@
 import { createRouter, createWebHistory } from 'vue-router'
 import { useUserStore } from '@/store'
+import { useCartStore } from '@/store/cart'
+import { useToast } from 'vue-toastification'
 
 const router = createRouter({
   history: createWebHistory(import.meta.env.BASE_URL),
@@ -60,7 +62,13 @@ const router = createRouter({
     {
       path: '/checkout',
       name: 'checkout',
-      component: () => import('../views/CheckoutView.vue')
+      component: () => import('../views/CheckoutView.vue'),
+      beforeEnter: (to, from) => {
+        if (!useCartStore().hasItems) {
+          useToast().error('Your cart is empty!')
+          return { name: 'home' }
+        }
+      }
     }
   ]
 })

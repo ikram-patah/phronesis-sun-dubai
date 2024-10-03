@@ -50,7 +50,7 @@ const cartStore = useCartStore()
         </li>
         <li class="nav-item" v-if="cartStore.hasItems">
           <RouterLink :to="{ name: 'checkout' }" custom v-slot="{ navigate }">
-            <button type="button" class="btn btn-primary position-relative" @click="navigate">
+            <button type="button" class="btn btn-light position-relative" @click="navigate">
               <i class="bi bi-cart"></i>
               <span
                 class="position-absolute top-0 start-100 translate-middle badge rounded-pill bg-danger"

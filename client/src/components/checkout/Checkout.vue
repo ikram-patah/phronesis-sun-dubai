@@ -1,9 +1,13 @@
 <script setup>
 import { computed, onMounted } from 'vue'
+import { useRouter } from 'vue-router'
+import { useToast } from 'vue-toastification'
 import { useCartStore } from '@/store/cart'
 import RebillyInstruments from '@rebilly/instruments'
 
 const cartStore = useCartStore()
+const router = useRouter()
+const toast = useToast()
 
 const items = computed(() =>
   cartStore.items.map((item) => ({
@@ -25,6 +29,12 @@ onMounted(() => {
     items: items.value
   })
 })
+
+function clearBasket() {
+  cartStore.removeAllItems()
+  toast('All items removed from basket')
+  router.replace({ name: 'home' })
+}
 </script>
 
 <template>
@@ -37,6 +47,11 @@ onMounted(() => {
             <div class="card-body">
               <div class="rebilly-instruments-summary"></div>
             </div>
+          </div>
+          <div class="d-grid gap-2 mt-3">
+            <button class="btn btn-link" type="button" @click="clearBasket">
+              Clear all items from basket
+            </button>
           </div>
         </div>
         <div class="col-md-7">
