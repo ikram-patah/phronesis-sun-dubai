@@ -1,5 +1,6 @@
 <script setup>
 import DebriefItem from '@/components/debrief/Debrief-item.vue'
+import { debriefs } from '@/data/debriefs'
 </script>
 
 <template>
@@ -12,29 +13,23 @@ import DebriefItem from '@/components/debrief/Debrief-item.vue'
     <div class="container">
       <div class="row justify-content-center">
         <div class="col-md-10">
-          <DebriefItem id="week-8">
-            <template #title>Project 8: Add consent check to the payment flow</template>
+          <DebriefItem v-for="debrief in debriefs" :key="debrief.id" :id="debrief.id">
+            <template #title>
+              {{ debrief.title }}
+            </template>
             <template #smile>
-              <p>
-                Easy to add to existing configuration. In the docs this feature has its own page,
-                which makes it easy to follow (rather than just a reference).
-              </p>
+              <ul>
+                <li v-for="(smile, index) in debrief.smiles" v-html="smile" :key="index"></li>
+              </ul>
             </template>
             <template #confusing>
               <ul>
-                <li class="list-item">
-                  It would be nice to have a default value if the feature is turned on without any
-                  additional i18n texting.
-                </li>
-                <li class="list-item">The docs could show an image preview of the feature.</li>
-                <li class="list-item">
-                  Copiable code on their own should work out of the box. Now it does not work
-                  without the i18n code.
-                </li>
-                <li class="list-item">
-                  The links' styles are not consistent with the rest of instruments links (use
-                  primaryColor?)
-                </li>
+                <li
+                  v-for="(confusing, index) in debrief.confusings"
+                  v-html="confusing"
+                  :key="index"
+                  class="mb-3"
+                ></li>
               </ul>
             </template>
           </DebriefItem>

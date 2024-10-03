@@ -1,11 +1,15 @@
 <script setup>
 const props = defineProps({
+  isOpen: {
+    type: Boolean,
+    default: false
+  },
   id: String
 })
 </script>
 
 <template>
-  <div class="accordion" id="accordion-debrief">
+  <div class="accordion mb-3" id="accordion-debrief">
     <div class="accordion-item">
       <h2 class="accordion-header">
         <button
@@ -21,7 +25,8 @@ const props = defineProps({
       </h2>
       <div
         :id="`debrief-${props.id}`"
-        class="accordion-collapse collapse show"
+        class="accordion-collapse collapse"
+        :class="{ show: props.isOpen }"
         data-bs-parent="#accordion-debrief"
       >
         <div class="accordion-body">
