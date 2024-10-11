@@ -21,6 +21,11 @@ const cartStore = useCartStore()
           </RouterLink>
         </li>
         <li class="nav-item">
+          <RouterLink :to="{name: 'funnel-hacking-live'}" class="btn btn-warning ms-3">
+              Funnel Hacking Live
+          </RouterLink>
+        </li>
+        <li class="nav-item">
           <RouterLink :to="{ name: 'villas' }" class="nav-link" activeClass="active">
             Villas
           </RouterLink>

@@ -1,6 +1,5 @@
 <script setup>
 import Sidebar from '@/components/layout/Sidebar.vue'
-import Footer from '@/components/layout/Footer.vue'
 </script>
 
 <template>

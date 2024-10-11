@@ -55,5 +55,29 @@ export const debriefs = [
             the page instead of part of the filter list. We didn't even realize we needed to
             filter by products and plans until we were almost done with the project.`
     ]
+  },
+  {
+    id: 'week-10',
+    title: 'Project 10: Funnel Hacking Live',
+    smiles: [
+      `
+            We did not smile at first, but after dropping bumpOffer and addons, and .update() struggles, then we smiled...
+            `
+    ],
+    confusings: [
+      `We don't have such core functionalities to achive the same goals in Rebilly Intstruments.`,
+      `
+            Addons does not have built-in quantity modifiers, as 'items' has.
+      `,
+      `
+            Bump offers has an array functionality, but you can only check to add all at once.
+      `,
+      `
+            RebillyInstruments.update() does not remove items.
+      `,
+      `
+            After updating the form, we lose all typed in data.
+      `
+    ]
   }
 ]

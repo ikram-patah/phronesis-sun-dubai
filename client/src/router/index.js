@@ -33,7 +33,7 @@ const router = createRouter({
       path: '/login',
       name: 'login',
       component: () => import('../views/LoginView.vue'),
-      beforeEnter: (to, from) => {
+      beforeEnter: () => {
         if (useUserStore().isLoggedIn) {
           return { name: 'dashboard' }
         }
@@ -63,12 +63,17 @@ const router = createRouter({
       path: '/checkout',
       name: 'checkout',
       component: () => import('../views/CheckoutView.vue'),
-      beforeEnter: (to, from) => {
+      beforeEnter: () => {
         if (!useCartStore().hasItems) {
           useToast().error('Your cart is empty!')
           return { name: 'home' }
         }
       }
+    },
+    {
+      path: '/funnel-hacking-live',
+      name: 'funnel-hacking-live',
+      component: () => import('../views/FunnelHackingLiveView.vue')
     }
   ]
 })
