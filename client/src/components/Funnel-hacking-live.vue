@@ -35,24 +35,34 @@ IN LAS VEGAS, NEVADA!”</p>
       </div>
     </div>
 
-    <div class="row my-5">
-      <div class="col-md-8 offset-md-2">
+    <div class="row my-5 justify-content-center">
+      <div class="col-md-8" style="max-width: 750px;">
         <div class="card" style="min-height: 800px">
             <div class="card-body">
-              <p>Funnel Hacking Live replays
-                <input v-model="state.hasReplay" type="checkbox" name="" id="">
-              </p>
+              <div class="row text-start">
+                <div class="col-md-12">
 
-              <p>
-                Funnel Hacking Live partner plan
-                <input v-model="state.hasPartner" type="checkbox" name="" id="">
-                <br>
-                <select v-if="state.hasPartner" v-model.number="state.numberOfPartners" name="" id="">
-                  <option value="1">Number of partners: 1</option>
-                  <option value="2">Number of partners: 2</option>
-                  <option value="3">Number of partners: 3</option>
-                </select>
-              </p>
+                  <div class="form-check">
+                    <input class="form-check-input" v-model="state.hasReplay" type="checkbox" name="" id="hasReplay">
+                    <label class="form-check-label" for="hasReplay">
+                      Funnel Hacking Live replays
+                    </label>
+                  </div>
+
+                  <div class="form-check">
+                    <input class="form-check-input" v-model="state.hasPartner" type="checkbox" name="" id="hasPartner">
+                    <label class="form-check-label" for="hasPartner">
+                      Funnel Hacking Live partner plan
+                    </label>
+
+                    <select style="max-width: 230px;" v-if="state.hasPartner" v-model.number="state.numberOfPartners" class="form-select" aria-label="Number of partners">
+                      <option value="1">Number of partners: 1</option>
+                      <option value="2">Number of partners: 2</option>
+                      <option value="3">Number of partners: 3</option>
+                    </select>
+                  </div>
+                </div>
+              </div>
 
               <div class="rebilly-instruments"></div>
               <div class="rebilly-instruments-summary"></div>
