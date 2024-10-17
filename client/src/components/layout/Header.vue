@@ -26,6 +26,11 @@ const cartStore = useCartStore()
           </RouterLink>
         </li>
         <li class="nav-item">
+          <RouterLink :to="{name: 'casino'}" class="btn btn-danger ms-3">
+              Casino
+          </RouterLink>
+        </li>
+        <li class="nav-item">
           <RouterLink :to="{ name: 'villas' }" class="nav-link" activeClass="active">
             Villas
           </RouterLink>

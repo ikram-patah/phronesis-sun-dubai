@@ -74,7 +74,12 @@ const router = createRouter({
       path: '/funnel-hacking-live',
       name: 'funnel-hacking-live',
       component: () => import('../views/FunnelHackingLiveView.vue')
-    }
+    },
+    {
+      path: '/casino',
+      name: 'casino',
+      component: () => import('../views/CasinoView.vue')
+    },
   ]
 })
 
