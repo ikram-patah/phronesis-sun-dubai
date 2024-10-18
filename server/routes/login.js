@@ -5,7 +5,7 @@ const { REBILLY_ORGANIZATION_ID, REBILLY_WEBSITE_ID } = require("../config/confi
 
 router.post("/", async (req, res, next) => {
   const response = {};
-  const customerId = "cus_01J4F5YR4MN9C3M34FVK9AMET4";
+  const customerId = "cus_01J69SYRK6AYWPYMS6MS9MJNNK";
   const data = {
     mode: "passwordless",
     customerId,
