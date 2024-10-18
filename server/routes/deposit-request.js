@@ -61,6 +61,7 @@ router.post("/", async (req, res, next) => {
     customerId,
     currency: "USD",
     amounts: req.body.amounts,
+    strategyId: req.body.strategyId,
   };
 
   const { fields: depositFields } = await rebillySDK.depositRequests.create({
