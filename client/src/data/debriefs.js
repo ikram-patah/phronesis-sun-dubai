@@ -79,5 +79,47 @@ export const debriefs = [
             After updating the form, we lose all typed in data.
       `
     ]
+  },
+  {
+    id: 'week-11',
+    title: 'Project 11: Casino deposit',
+    smiles: [
+      `
+      The task was straightforward and easy to understand.
+            `
+    ],
+    confusings: [
+      `Once deposit amount is specified if you go back and try again then getting error: deposit request is not started.`,
+      `
+      Upper limit deposit amount error message is not precise, namely it states Deposit amount must be less than 5000, however 5000 is actually processable. Therefore the error message should be Deposit amount must be less than or equal to 5000
+      `,
+      `
+      In Recomm the transaction page says the method is 'rebilly-hosted-payment-form'
+      <img style="max-width: 800px" src="/images/rebilly-hosted-payment-form.png" alt="Recomm transaction page">
+      `,
+      `
+      We seem to support 'deposit' feautre in RebillyInstruments, but the whole cycle (customer management, deposit data tables, etc.) is not supported in Recomm.
+      `
+    ],
+  },
+  {
+    id: 'week-12',
+    title: 'Project 12: Casino deposit strategies, USD and CAD',
+    smiles: [
+      `
+            `
+    ],
+    confusings: [
+      `
+      In Recomm the deposit strategy amounts configuration is not easy to define.
+      <img style="max-width: 800px" src="/images/project12/incrementOf.png" alt="Deposit strategy amounts">
+      `,
+      `
+      In Recomm a preview of the amounts would be helpful.
+      `,
+      `
+      Strategy picking should be documented in Rebilly Instruments docs as well, not just in the API description of postdepositrequest's 'strategyID'
+      `
+    ],
   }
 ]

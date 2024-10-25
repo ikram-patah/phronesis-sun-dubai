@@ -5,6 +5,14 @@
       <div class="row">
         <div class="col-md-12">
           <div v-if="userStore.isLoggedIn">
+            <div class="form-check">
+              <input v-model="state.isCad" class="form-check-input" type="checkbox" id="flexCheckDefault">
+              <label class="form-check-label" for="flexCheckDefault">
+                I want to deposit in CAD
+              </label>
+            </div>
+            <button class="btn btn-primary" @click="initDepositRequest" :disabled="state.isProcessing">
+              Deposit</button>
             <div class="rebilly-instruments-summary"></div>
             <div class="rebilly-instruments"></div>
           </div>
@@ -14,7 +22,7 @@
                       <span role="status" class="ml-2"> &nbsp;Logging in... </span>
                     </template>
                     <template v-else> Log in </template>
-                  </button>
+          </button>
         </div>
       </div>
     </div>
@@ -30,18 +38,18 @@
 </template>
 
 <script setup>
-import { onBeforeMount, onBeforeUnmount, onMounted, reactive } from 'vue'
+import { onBeforeMount, onBeforeUnmount, reactive } from 'vue'
 import RebillyInstruments from '@rebilly/instruments'
 import casinoHeader from '@/components/casino/Header.vue'
 import { useUserStore } from '@/store'
 import api from '@/helpers/api';
 
-const DEPOSIT_STRATEGY_ID = 'dep_str_01JAD4805YFB2GPYXSK1CP0HSN';
-
 const userStore = useUserStore()
 const state = reactive({
   isLogginIn: false,
   isProcessing: false,
+  isCad: false,
+  isInited: false,
 })
 
 const onLogin = async () => {
@@ -65,11 +73,15 @@ const onLogin = async () => {
 async function initDepositRequest() {
   state.isProcessing = true
 
+  if(state.isInited) {
+    RebillyInstruments.destroy();
+  }
+
   try {
     const { depositRequestId, token } = await api({
       method: 'POST',
       resource: 'deposit-request',
-      body: { strategyId: DEPOSIT_STRATEGY_ID }
+      body: { currency: state.isCad ? 'CAD' : 'USD' }
     })
 
     initiateInstrument({ token, depositRequestId })
@@ -77,6 +89,7 @@ async function initDepositRequest() {
     console.log(error)
     alert('An error occurred. Please try again later.')
   } finally {
+    state.isInited = true;
     state.isProcessing = false
   }
 }
@@ -98,11 +111,6 @@ onBeforeUnmount(() => {
   document.body.classList.remove('purple-background')
 })
 
-onMounted(() => {
-  if(userStore.isLoggedIn) {
-    initDepositRequest();
-  }
-})
 </script>
 
 <style lang="scss">

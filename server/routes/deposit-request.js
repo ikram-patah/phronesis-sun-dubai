@@ -56,12 +56,13 @@ router.post("/", async (req, res, next) => {
     },
   });
 
+  // figure out the logged in customer's preferred ccy
+  const ccy = 'someCCY;'
+
   const requestDepositData = {
     websiteId: REBILLY_WEBSITE_ID,
     customerId,
-    currency: "USD",
-    amounts: req.body.amounts,
-    strategyId: req.body.strategyId,
+    currency: req.body.currency || "USD",
   };
 
   const { fields: depositFields } = await rebillySDK.depositRequests.create({
